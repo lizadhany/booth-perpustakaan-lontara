@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Who Am I?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+  <!-- =============== TAMPILAN GAME =============== -->
+  <div class="view" id="game-view">
+    <header class="bar">
+      <a class="btn" href="../../index.html">⬅ Hub</a>
+      <h2>🕵️ Who Am I?</h2>
+      <span class="pill" id="round-label">Ronde 1</span>
+    </header>
+
+    <main>
+      <div class="mystery">❓</div>
+
+      <!-- Tiga petunjuk (dibuat oleh game.js) -->
+      <section class="clues" id="clues"></section>
+
+      <!-- Status timer: waktu baca petunjuk (5 dtk) lalu countdown menjawab (3 dtk) -->
+      <section class="status" id="status">
+        <div class="label" id="status-label">Siap?</div>
+        <div class="num" id="status-num">&nbsp;</div>
+        <div class="bar-track"><div class="bar-fill" id="bar-fill"></div></div>
+      </section>
+    </main>
+
+    <footer class="bar">
+      <button class="btn red" id="btn-answer">Tampilkan Jawaban</button>
+      <button class="btn mint" id="btn-next" style="display:none;">Ronde Berikutnya</button>
+      <button class="btn" id="btn-reset" style="display:none;">Reset Ronde</button>
+    </footer>
+  </div>
+
+  <!-- =============== LAYAR MULAI =============== -->
+  <div class="overlay" id="start-overlay">
+    <div class="reveal-box">
+      <div class="mystery">🕵️</div>
+      <h1>Who Am I?</h1>
+      <p class="lead">Ada 3 petunjuk. Setiap petunjuk punya waktu 5 detik, lalu 3 detik untuk menjawab. Siap menebak?</p>
+      <button class="btn gold big" id="btn-start">Mulai Ronde</button>
+    </div>
+  </div>
+
+  <!-- =============== COUNTDOWN 5 DETIK (latar di-blur lewat CSS) =============== -->
+  <div class="overlay" id="count-overlay" hidden>
+    <div class="reveal-box">
+      <h2>Waktu habis! Ayo jawab sekarang!</h2>
+      <div class="bignum" id="count-num">5</div>
+    </div>
+  </div>
+
+  <!-- =============== JAWABAN (latar petunjuk di-blur lewat CSS) =============== -->
+  <div class="overlay" id="reveal-overlay" hidden>
+    <div class="reveal-box">
+      <p class="lead">Jawabannya adalah</p>
+      <h1 class="answer" id="reveal-answer"></h1>
+      <p class="lead" id="reveal-explain"></p>
+      <div class="reward" id="reveal-reward" style="display:none;"></div>
+      <div class="actions">
+        <a class="btn gold" href="../../index.html">⬅ Kembali ke Menu Hub</a>
+        <button class="btn mint" id="btn-next2" style="display:none;">Ronde Berikutnya</button>
+        <button class="btn" id="btn-reset2" style="display:none;">Ulangi Ronde</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../js/config.js"></script>
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/data.js"></script>
+  <script src="../../js/sound.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

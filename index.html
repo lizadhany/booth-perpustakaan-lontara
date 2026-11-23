@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Booth Literasi Keuangan – Bank Indonesia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- =============== VIEW 1: GERBANG SYARAT =============== -->
+  <div class="view" id="view-gate">
+    <main>
+      <p class="lead">Pindai kode QR dengan ponsel, lalu operator memastikan kedua langkah sudah selesai.</p>
+      <div class="grid-2">
+        <section class="card">
+          <h3>1. Ikuti Instagram Perpustakaan</h3>
+          <div class="qr-box" id="qr-ig"></div>
+          <p class="link-text" id="txt-ig" style="display:none;"></p>
+        </section>
+        <section class="card">
+          <h3>2. Daftar anggota IBI Library</h3>
+          <div class="qr-box" id="qr-ibi"></div>
+          <a class="btn gold" id="link-ibi" target="_blank" rel="noopener" style="display:none;">Buka IBI Library</a>
+        </section>
+      </div>
+      <section class="card">
+        <label class="check"><input type="checkbox" id="chk-ig"> Peserta sudah mengikuti syarat</label>
+        <label class="check" style="display:none;"><input type="checkbox" id="chk-ibi" checked> Peserta sudah terdaftar sebagai anggota IBI Library</label>
+        <button class="btn gold big" id="btn-gate-next" disabled style="margin-top:12px">Konfirmasi dan mulai bermain</button>
+      </section>
+    </main>
+    <footer class="bar">
+      <!-- Tombol kecil untuk operator -->
+      <button class="btn small" id="btn-skip" style="display:none;">Lewati Syarat (Mode Operator)</button>
+    </footer>
+  </div>
+
+  <!-- =============== VIEW 2: OPENING =============== -->
+  <div class="view" id="view-opening" hidden>
+    <header class="bar" style="display:none">
+      <div class="logos">
+        <!-- SLOT LOGO BANK INDONESIA
+             Ganti: isi CONFIG.LOGO_BI di js/config.js, atau unggah di halaman Pengaturan. -->
+        <div class="logo-slot" id="logo-bi"></div>
+        <!-- SLOT LOGO PERPUSTAKAAN
+             Ganti: isi CONFIG.LOGO_PERPUS di js/config.js, atau unggah di halaman Pengaturan. -->
+        <div class="logo-slot" id="logo-perpus"></div>
+      </div>
+    </header>
+    <main>
+      <h1>Selamat datang di Booth Perpustakaan Lontara!</h1>
+      <p class="lead">Kenali Bank Indonesia lewat permainan seru. Jawab dengan benar dan bawa pulang merchandisenya.</p>
+      <button class="btn gold big" id="btn-start">Mulai Bermain</button>
+    </main>
+    <footer class="bar"><p class="note">Cinta, Bangga, Paham Rupiah</p></footer>
+  </div>
+
+  <!-- =============== VIEW 3: HUB PILIHAN GAME =============== -->
+  <div class="view" id="view-hub" hidden>
+    <header class="bar">
+      <h2>Pilih permainanmu</h2>
+      <div class="actions">
+        <button class="btn" id="btn-sound">🔊 Suara ON</button>
+        <button class="btn" id="btn-fs">⛶ Fullscreen</button>
+      </div>
+    </header>
+    <main>
+      <!-- Kartu game dibuat otomatis dari daftar GAMES di js/config.js -->
+      <div class="grid-3" id="game-list"></div>
+    </main>
+    <footer class="bar"><p class="note">Pengaturan dan kelola materi ada di ikon ⚙️ pojok kanan bawah.</p></footer>
+
+    <!-- Ikon Pengaturan (terpisah dari kartu game) -->
+    <a class="gear" href="settings/index.html" title="Pengaturan & Kelola Materi" aria-label="Pengaturan">⚙️</a>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

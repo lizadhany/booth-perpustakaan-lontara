@@ -1,0 +1,304 @@
+/* =====================================================================
+   style.css  —  tampilan untuk SEMUA halaman
+   Tema diambil dari gambar Konten: biru perpustakaan, rak buku, cahaya lembut.
+   Warna utama ada di :root di bawah, ubah di sini untuk mengganti tema.
+   ===================================================================== */
+
+:root {
+  --navy: #081a52;      /* biru tua (bayangan rak) */
+  --royal: #1b4fd6;     /* biru royal */
+  --azure: #2b8cff;     /* biru cerah */
+  --cyan: #27c8f0;      /* cahaya biru muda di pojok gambar */
+  --gold: #ffc247;      /* aksen hangat (punggung buku) untuk tombol utama */
+  --red: #ff5a5f;
+  --mint: #2ed39a;
+  --glass: rgba(8, 26, 82, 0.68);
+  --line: rgba(255, 255, 255, 0.3);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+[hidden] { display: none !important; }
+
+body {
+  min-height: 100vh;
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 18px;
+  line-height: 1.45;
+  color: #fff;
+  /* Gambar rak buku + lapisan biru agar teks tetap terbaca */
+  background:
+    radial-gradient(circle at 8% 96%, rgba(39, 200, 240, 0.45), transparent 40%),
+    linear-gradient(rgba(6, 24, 80, 0.6), rgba(12, 62, 170, 0.5)),
+    url("../assets/konten.png") center / cover no-repeat fixed,
+    var(--navy);
+}
+
+h1, h2, h3 { font-weight: 800; line-height: 1.15; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35); }
+h1 { font-size: clamp(2rem, 5vw, 4rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2.3rem); }
+
+/* ---------- Susunan halaman: header / main / footer ---------- */
+.view { min-height: 100vh; display: flex; flex-direction: column; }
+header.bar, footer.bar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; flex-wrap: wrap; padding: 14px 28px;
+}
+header.bar { background: rgba(8, 26, 82, 0.55); border-bottom: 1px solid var(--line); backdrop-filter: blur(6px); }
+footer.bar { justify-content: center; }
+main {
+  flex: 1; width: 100%; max-width: 1200px; margin: 0 auto; padding: 18px 28px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px;
+  text-align: center;
+}
+
+/* ---------- Kartu kaca ---------- */
+.card {
+  position: relative; border-radius: 28px; padding: 24px; border: 1.5px solid var(--line);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 14px 44px rgba(0, 8, 40, 0.5);
+}
+/* garis cahaya emas di tepi atas dan bawah kartu */
+.card::before, .card::after {
+  content: ""; position: absolute; left: 16%; right: 16%; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, transparent, rgba(244, 201, 93, 0.85), transparent);
+}
+.card::before { top: -1px; }
+.card::after { bottom: -1px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; width: 100%; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; width: 100%; }
+@media (max-width: 800px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+
+/* ---------- Tombol ---------- */
+.btn {
+  font: inherit; font-weight: 800; cursor: pointer; color: #fff; text-decoration: none; display: inline-block;
+  padding: 12px 26px; border-radius: 999px; border: 2px solid var(--line); background: rgba(255, 255, 255, 0.14);
+  transition: transform 0.12s, box-shadow 0.12s, background 0.12s;
+}
+.btn:hover:not(:disabled) { transform: translateY(-2px); background: rgba(255, 255, 255, 0.26); box-shadow: 0 6px 20px rgba(39, 200, 240, 0.4); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn:focus-visible, .tile:focus-visible, .fld:focus-visible, .gear:focus-visible { outline: 4px solid var(--gold); outline-offset: 3px; }
+.btn.gold { background: var(--gold); border-color: #fff3; color: var(--navy); }
+.btn.gold:hover:not(:disabled) { background: #ffd273; box-shadow: 0 6px 24px rgba(255, 194, 71, 0.55); }
+.btn.mint { background: var(--mint); color: var(--navy); border-color: #fff3; }
+.btn.red { background: var(--red); border-color: #fff3; }
+.btn.big { font-size: 1.5rem; padding: 18px 48px; }
+.btn.small { font-size: 0.85rem; padding: 6px 14px; opacity: 0.8; }
+
+/* ---------- Gerbang syarat ---------- */
+.qr-box { background: #fff; border-radius: 16px; padding: 10px; width: 220px; margin: 12px auto; }
+.qr-fallback { color: var(--navy); font-size: 0.8rem; word-break: break-all; }
+.link-text { font-size: 0.85rem; opacity: 0.8; word-break: break-all; }
+.check { display: flex; align-items: center; gap: 14px; font-weight: 700; font-size: 1.2rem; cursor: pointer; text-align: left; margin: 8px 0; }
+.check input { width: 28px; height: 28px; accent-color: var(--gold); }
+
+/* ---------- Opening & logo ---------- */
+.logos { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; }
+.logo-slot {
+  width: 220px; height: 130px; padding: 8px; display: grid; place-items: center; text-align: center;
+  background: rgba(255, 255, 255, 0.92); color: var(--navy); font-weight: 800; font-size: 0.95rem;
+  border: 3px dashed var(--royal); border-radius: 18px; overflow: hidden;
+}
+.logo-slot img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.lead { font-size: clamp(1.1rem, 2vw, 1.6rem); max-width: 800px; }
+
+/* ---------- Hub ---------- */
+.game-card { display: flex; flex-direction: column; gap: 12px; align-items: center; text-decoration: none; color: #fff; transition: transform 0.15s, box-shadow 0.15s; }
+.game-card:hover { transform: translateY(-6px); box-shadow: 0 16px 50px rgba(39, 200, 240, 0.5); }
+.game-card .icon { font-size: 4.5rem; }
+.game-card.soon { border-style: dashed; opacity: 0.7; }
+.game-card.soon:hover { transform: none; box-shadow: none; }
+/* Tombol gear (Pengaturan) sengaja DI LUAR deretan kartu game */
+.gear {
+  position: fixed; right: 22px; bottom: 22px; width: 64px; height: 64px; border-radius: 50%; z-index: 20;
+  display: grid; place-items: center; font-size: 2rem; text-decoration: none;
+  background: var(--glass); border: 2px solid var(--line); backdrop-filter: blur(6px); transition: transform 0.4s;
+}
+.gear:hover { transform: rotate(90deg); }
+
+/* ---------- Game 1: papan gambar ---------- */
+.pill { font-weight: 800; padding: 8px 20px; border-radius: 999px; background: rgba(255, 255, 255, 0.16); border: 2px solid var(--line); }
+.timer-pill { font-size: 1.8rem; min-width: 120px; text-align: center; }
+.timer-pill.low { background: var(--red); animation: thump 0.5s infinite alternate; }
+.board {
+  position: relative; width: min(58vh, 88vw); aspect-ratio: 1; border-radius: 22px; overflow: hidden;
+  border: 5px solid #fff; box-shadow: 0 0 70px rgba(39, 200, 240, 0.55);
+}
+.board img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.tiles { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(5, 1fr); }
+.tile {
+  font: 800 1.4rem "Plus Jakarta Sans", sans-serif; color: rgba(255, 194, 71, 0.7); cursor: pointer;
+  background: linear-gradient(135deg, #1b4fd6, #081a52); border: 1px solid rgba(255, 255, 255, 0.25);
+  transition: opacity 0.5s, transform 0.5s;
+}
+.tile:hover { background: var(--azure); color: #fff; }
+.tile.gone { opacity: 0; transform: scale(0.4); pointer-events: none; }
+.answer-box { max-width: 760px; width: 100%; }
+.answer-box h2 { color: var(--gold); font-size: clamp(1.8rem, 4vw, 3rem); }
+
+/* ---------- Hadiah ---------- */
+.reward { margin-top: 14px; padding: 12px 18px; border-radius: 16px; font-weight: 800; background: var(--mint); color: var(--navy); }
+
+/* ---------- Overlay layar penuh (latar belakang di-blur) ---------- */
+.overlay {
+  position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 24px; text-align: center;
+  background: rgba(5, 16, 60, 0.5); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+}
+.bignum {
+  font-size: min(32vh, 18rem); font-weight: 800; line-height: 1; color: var(--gold);
+  text-shadow: 0 0 50px rgba(255, 194, 71, 0.75); animation: thump 1s infinite;
+}
+@keyframes thump { 0% { transform: scale(1); } 15% { transform: scale(1.14); } 30% { transform: scale(1); } 45% { transform: scale(1.08); } 100% { transform: scale(1); } }
+.reveal-box { max-width: 900px; display: flex; flex-direction: column; gap: 18px; align-items: center; }
+.reveal-box .answer { font-size: clamp(2.5rem, 8vw, 6rem); color: var(--gold); animation: pop 0.6s ease-out; }
+@keyframes pop { 0% { transform: scale(0.3); opacity: 0; } 70% { transform: scale(1.1); } 100% { transform: scale(1); opacity: 1; } }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+/* ---------- Game 2: petunjuk ---------- */
+.mystery { font-size: 5rem; animation: float 2.5s ease-in-out infinite; }
+@keyframes float { 50% { transform: translateY(-12px); } }
+.clues { display: flex; flex-direction: column; gap: 14px; width: 100%; }
+.clue { text-align: left; padding: 18px 26px; border-radius: 20px; border: 2px dashed var(--line); background: rgba(255, 255, 255, 0.08); opacity: 0.55; transition: all 0.3s; }
+.clue.on { opacity: 1; border-style: solid; background: rgba(255, 255, 255, 0.95); color: var(--navy); }
+.clue.now { box-shadow: 0 0 0 4px var(--gold), 0 0 40px rgba(255, 194, 71, 0.6); transform: scale(1.02); }
+.clue small { font-weight: 800; color: var(--royal); }
+.clue p { font-size: clamp(1.3rem, 2.6vw, 2rem); font-weight: 800; }
+.clue.off p { opacity: 0.7; }
+.status { width: 100%; max-width: 700px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.status .label { font-weight: 800; font-size: 1.3rem; }
+.status .num { font-size: 4.5rem; font-weight: 800; line-height: 1; }
+.status.wait .num { color: var(--red); animation: thump 1s infinite; }
+.status.wait .label { color: var(--gold); }
+.bar-track { height: 14px; width: 100%; border-radius: 99px; background: rgba(255, 255, 255, 0.2); overflow: hidden; }
+.bar-fill { height: 100%; width: 100%; background: linear-gradient(90deg, var(--cyan), var(--gold)); }
+
+/* ---------- Halaman Pengaturan ---------- */
+.tabs { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.tab { font: inherit; font-weight: 800; padding: 10px 20px; border-radius: 999px; cursor: pointer; color: #fff; background: rgba(255, 255, 255, 0.12); border: 2px solid var(--line); }
+.tab.on { background: var(--gold); color: var(--navy); }
+.panel { width: 100%; text-align: left; display: flex; flex-direction: column; gap: 14px; }
+.row { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 14px 18px; border-radius: 16px; background: rgba(255, 255, 255, 0.1); }
+.fld { width: 100%; font: inherit; padding: 10px 14px; border-radius: 12px; border: 2px solid var(--line); background: #fff; color: var(--navy); margin-bottom: 8px; }
+label.lbl { font-weight: 800; display: block; margin-bottom: 4px; }
+.thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+.thumbs img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 12px; }
+.note { font-size: 0.95rem; opacity: 0.85; }
+
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+/* === PUZZLE SVG 4x4 & TATA LETAK JAWABAN === */
+.puzzle-board {
+  border: 4px solid var(--gold) !important;
+  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.6) !important;
+}
+
+#puzzle {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#puzzle .piece {
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+#puzzle .piece path {
+  stroke: rgba(255, 220, 130, 0.75);
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+}
+
+#puzzle .piece text {
+  fill: var(--gold);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+  user-select: none;
+}
+
+#puzzle .piece.gone {
+  opacity: 0;
+  transform: scale(0.75);
+  pointer-events: none;
+}
+
+/* Tata letak panggung bermain & saat jawaban terbuka (gambar kiri, deskripsi kanan) */
+.stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1100px;
+}
+
+.stage.revealed {
+  flex-direction: row;
+  gap: 36px;
+  padding: 16px;
+}
+
+.stage.revealed .board {
+  flex: 0 0 420px;
+  max-width: 45%;
+}
+
+.stage.revealed .answer-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.stage.revealed .answer-box {
+  width: 100%;
+  padding: 28px 32px;
+}
+
+@media (max-width: 800px) {
+  .stage.revealed {
+    flex-direction: column;
+  }
+  .stage.revealed .board {
+    max-width: 88vw;
+  }
+}
+
+/* === TATA LETAK JAWABAN: GAMBAR KIRI, DESKRIPSI + TOMBOL KANAN === */
+#game-main.reveal-layout {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 36px !important;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+#game-main.reveal-layout .board {
+  flex: 0 0 420px;
+  max-width: 45%;
+  margin: 0 !important;
+}
+
+#game-main.reveal-layout .answer-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#game-main.reveal-layout .answer-box {
+  width: 100%;
+  text-align: left !important;
+  margin: 0 !important;
+  padding: 28px 32px !important;
+}

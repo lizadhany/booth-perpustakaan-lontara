@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Complete the Picture</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+  <div class="view" id="game-view">
+    <main>
+      <span class="pill timer-pill" id="timer">15</span>
+
+      <div class="stage" id="stage">
+        <!-- Gambar di bawah, 16 potongan puzzle (SVG) menutupinya -->
+        <div class="board puzzle-board">
+          <img id="pic" alt="Gambar yang harus ditebak">
+          <svg id="puzzle" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+
+        <!-- Kolom kanan saat jawaban muncul: Kotak kaca di atas, tombol di luar bawahnya -->
+        <div class="answer-column" id="answer-column" hidden>
+          <section class="card answer-box" id="answer-box">
+            <small style="letter-spacing: 1.5px; opacity: 0.85; font-weight: 800;">JAWABANNYA ADALAH</small>
+            <h2 id="answer-name"></h2>
+            <p id="answer-info"></p>
+          </section>
+          <div class="actions" id="end-controls" style="margin-top: 18px;" hidden>
+            <a class="btn gold big" href="../../index.html">⬅ Kembali ke Menu Pilih Game</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bar">
+      <!-- Tombol selama ronde berjalan -->
+      <div class="actions" id="controls">
+        <button class="btn" id="btn-random">Buka Acak 2/2</button>
+        <button class="btn gold" id="btn-answer">Tampilkan Jawaban</button>
+        
+      </div>
+    </footer>
+  </div>
+
+  <!-- =============== LAYAR MULAI =============== -->
+  <div class="overlay" id="start-overlay">
+    <div class="reveal-box">
+      <div class="mystery">🧩</div>
+      <h1>Complete the Picture</h1>
+      <p class="lead" id="start-text">Beberapa potongan sudah terbuka. Tebak gambarnya sebelum waktu habis!</p>
+      <button class="btn gold big" id="btn-start">Mulai</button>
+      
+    </div>
+  </div>
+
+  <!-- =============== COUNTDOWN =============== -->
+  <div class="overlay" id="count-overlay" hidden>
+    <div class="reveal-box">
+      <h2 id="count-title">Waktu habis! Ayo jawab sekarang!</h2>
+      <div class="bignum" id="count-num">5</div>
+    </div>
+  </div>
+
+  <script src="../../js/config.js"></script>
+  <script src="../../js/utils.js"></script>
+  <script src="../../js/data.js"></script>
+  <script src="../../js/sound.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

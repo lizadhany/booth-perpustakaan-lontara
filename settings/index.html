@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pengaturan & Kelola Materi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="view">
+    <header class="bar">
+      <a class="btn" href="../index.html">⬅ Hub</a>
+      <h2>⚙️ Pengaturan & Kelola Materi</h2>
+      <button class="btn" id="btn-sound">🔊 Suara ON</button>
+    </header>
+
+    <main style="justify-content:flex-start">
+      <nav class="tabs" id="tabs"></nav>
+      <!-- Isi tab dibuat oleh settings.js -->
+      <section class="card panel" id="panel"></section>
+    </main>
+
+    <footer class="bar">
+      <p class="note">Link Instagram, link IBI Library, dan durasi game diubah di file <b>js/config.js</b>.</p>
+    </footer>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/sound.js"></script>
+  <script src="settings.js"></script>
+</body>
+</html>
